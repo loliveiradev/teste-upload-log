@@ -1,8 +1,8 @@
-package com.lucasoliveira.uploadlog.service.impl;
+package com.lucasoliveira.uploadlog.api.service.impl;
 
-import com.lucasoliveira.uploadlog.entity.Log;
-import com.lucasoliveira.uploadlog.repository.LogRepository;
-import com.lucasoliveira.uploadlog.service.LogService;
+import com.lucasoliveira.uploadlog.api.entity.Log;
+import com.lucasoliveira.uploadlog.api.repository.LogRepository;
+import com.lucasoliveira.uploadlog.api.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,7 +22,7 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public Page<Log> listLog(int page, int count) {
-        Pageable pages = new PageRequest(page, count);
-        return this.repository.findAll(pages);
+        PageRequest pageRequest = new PageRequest(page- 1, count);
+        return this.repository.findAll(pageRequest);
     }
 }

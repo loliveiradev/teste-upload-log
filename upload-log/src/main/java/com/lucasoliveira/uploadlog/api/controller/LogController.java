@@ -1,11 +1,15 @@
-package com.lucasoliveira.uploadlog.controller;
+package com.lucasoliveira.uploadlog.api.controller;
 
-import com.lucasoliveira.uploadlog.entity.Log;
-import com.lucasoliveira.uploadlog.response.Response;
-import com.lucasoliveira.uploadlog.service.LogService;
+import com.lucasoliveira.uploadlog.api.entity.Log;
+import com.lucasoliveira.uploadlog.api.service.LogService;
+
+import io.swagger.annotations.ApiOperation;
+
+import com.lucasoliveira.uploadlog.api.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -20,13 +24,16 @@ public class LogController {
     @Autowired
     private LogService service;
 
+    @PostMapping(value = "include")
+    @ApiOperation(value = "Include Log")
+	@PreAuthorize("hasAnyRole('CUSTUMER')")
     public ResponseEntity<Response<Log>> createOrUpade (HttpServletRequest request,
                                                         @RequestBody Log log, BindingResult result){
 
-        Response<Log> response = new Response<Log>();
+        final Response<Log> response = new Response<Log>();
 
         try {
-            validateCreateLog(log, result);
+            validateCreateLog(log, result);	
             if (result.hasErrors()) {
                 result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
                 return ResponseEntity.badRequest().body(response);
@@ -52,6 +59,7 @@ public class LogController {
 
 
     @GetMapping(value = "{page}/{count}")
+	@PreAuthorize("hasAnyRole('CUSTUMER')")
     public ResponseEntity<Response<Page<Log>>> findAll (HttpServletRequest request, @PathVariable("page") int page, @PathVariable("count") int count){
         Response<Page<Log>> response = new Response<Page<Log>>();
         Page<Log> tickets = null;

@@ -1,0 +1,14 @@
+spring.datasource.platform=postgres
+spring.datasource.url=jdbc:postgresql://localhost:5432/db
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+spring.jpa.show-sql=true
+spring.jpa.generate-ddl=true
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+jwt.secret=helpDesk_oliveira
+jwt.experation=604800
+
+

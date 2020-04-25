@@ -1,4 +1,4 @@
-package com.lucasoliveira.uploadlog.response;
+package com.lucasoliveira.uploadlog.api.response;
 
 import java.util.ArrayList;
 import java.util.List;

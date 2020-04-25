@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver 
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+      
+jwt:
+  secret : helpDesk_oliveira
+  experation: 604800
+      cle

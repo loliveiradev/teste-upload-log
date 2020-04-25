@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db
+    username: postgres
+    password: postgres
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: rg.hibernate.dialect.PostgreSQLDialect  
+    properties:
+      hibernate:
+        temp.use_jdbc_metadata_defaults: false  
+      
