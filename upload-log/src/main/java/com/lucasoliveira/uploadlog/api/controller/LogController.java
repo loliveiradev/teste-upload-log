@@ -58,8 +58,8 @@ public class LogController {
     }
 
 
-    @GetMapping(value = "{page}/{count}")
-	@PreAuthorize("hasAnyRole('CUSTUMER')")
+    @GetMapping(value = "/{page}/{count}")
+	@PreAuthorize("hasAnyRole('CUSTOMER')")
     public ResponseEntity<Response<Page<Log>>> findAll (HttpServletRequest request, @PathVariable("page") int page, @PathVariable("count") int count){
         Response<Page<Log>> response = new Response<Page<Log>>();
         Page<Log> tickets = null;
